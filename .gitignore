@@ -1,0 +1,6 @@
+private.zsh
+*.zwc
+history
+user-before.zsh
+user-after.zsh
+user_lazy.zsh

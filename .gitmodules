@@ -1,0 +1,15 @@
+[submodule "nvm"]
+	path = nvm
+	url = https://github.com/nvm-sh/nvm
+[submodule "omz"]
+	path = omz
+	url = https://github.com/ohmyzsh/ohmyzsh
+[submodule "defer"]
+	path = defer
+	url = https://github.com/romkatv/zsh-defer
+[submodule "fnvm"]
+	path = fnvm
+	url = https://github.com/qwreey75/fnvm
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k
