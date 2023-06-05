@@ -14,7 +14,7 @@ source $HOME/.zsh/defer/zsh-defer.plugin.zsh
 zsh-defer +1 +2 -c 'source $HOME/.zsh/fnvm/fnvm.sh; fnvm_init'
 # lazyload
 zsh-defer +1 +2 source $HOME/.zsh/lazyload.zsh
-[ -e "$HOME/.zsh/user-before.zsh" ] && zsh-defer +1 +2 source $HOME/.zsh/user-lazy.zsh
+[ -e "$HOME/.zsh/user-lazy.zsh" ] && zsh-defer +1 +2 source $HOME/.zsh/user-lazy.zsh
 
 # user config
 DISABLE_AUTO_TITLE="true" # more performance!
