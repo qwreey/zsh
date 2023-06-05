@@ -1,9 +1,3 @@
-# Open explorer here
-e() {
-	explorer $(cygpath -d "$@")
-	return 0
-}
-
 # recompile all zsh files
 zcompile_all() {
 	[ -e "$HOME/.zsh/private.zsh" ] && zcompile ~/.zsh/private.zsh
