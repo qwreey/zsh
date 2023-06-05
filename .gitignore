@@ -3,4 +3,9 @@ private.zsh
 history
 user-before.zsh
 user-after.zsh
-user_lazy.zsh
+user-lazy.zsh
+zcompdump-*
+nvm/*
+nvm/
+omz/*
+omz/
