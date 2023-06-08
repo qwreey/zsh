@@ -1,4 +1,5 @@
-[ ! -e "$HOME/.zshrc" ] && cp $HOME/.zsh/.zshrc $HOME
+[ -e "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak" && echo "Backup ~/.zshrc into ~/.zshrc.bak"
+cp $HOME/.zsh/.zshrc $HOME
 source $HOME/.zsh/rc.zsh
 source $HOME/.zsh/lazyload.zsh
 export NVM_DIR=$HOME/.zsh/nvm
