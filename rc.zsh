@@ -125,7 +125,12 @@ _omz_source() {
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
 for config_file ("$ZSH"/lib/*.zsh); do
-	_omz_source "lib/${config_file:t}"
+	file="${config_file:t}"
+	[ "$file" != "correction.zsh" ] &&
+	[ "$file" != "directories.zsh" ] &&
+	[ "$file" != "grep.zsh" ] &&
+	[ "$file" != "misc.zsh" ] &&
+	_omz_source "lib/$file"
 done
 unset custom_config_file
 

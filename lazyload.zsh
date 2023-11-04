@@ -17,20 +17,12 @@ zcompile_all() {
 	( find ~/.zsh/omz/lib/*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
 	( find ~/.zsh/zcompdump*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
 }
-omztrim() {
-	omzlib=$HOME/.zsh/omz/lib
-	rm $omzlib/bzr.zsh $omzlib/correction.zsh $omzlib/diagnostics.zsh\
-	   $omzlib/directories.zsh $omzlib/git.zsh $omzlib/grep.zsh $omzlib/misc.zsh\
-	   $omzlib/nvm.zsh $omzlib/prompt_info_functions.zsh $omzlib/spectrum.zsh\
-	   $omzlib/termsupport.zsh $omzlib/theme-and-appearance.zsh $omzlib/vcs_info.zsh 2>/dev/null
-}
 zupdate() {
 	git -C $HOME/.zsh/defer pull --depth 1
 	git -C $HOME/.zsh/nvm pull --depth 1
 	git -C $HOME/.zsh/powerlevel10k pull --depth 1
 	fnvm_update
 	omz update
-	omztrim
 	zcompile_all
 }
 
