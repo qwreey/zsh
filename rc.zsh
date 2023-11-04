@@ -2,10 +2,10 @@ DEBUG=false
 $DEBUG && timer1=$(($(date +%s%N)/1000000)) && echo .zshrc load started
 
 # ----------------------  CONFIG  ----------------------
-export HISTFIL=$HOME/.zsh/history
-export FNVM_NVMDIR=$HOME/.zsh/nvm
-export FNVM_DIR=$HOME/.zsh/fnvm
-export NVM_DIR=$HOME/.zsh/nvm
+export HISTFIL="$HOME/.zsh/history"
+export FNVM_NVMDIR="$HOME/.zsh/nvm"
+export FNVM_DIR="$HOME/.zsh/fnvm"
+export NVM_DIR="$HOME/.zsh/nvm"
 
 # load defer
 source "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
@@ -175,11 +175,11 @@ $DEBUG && echo "oh my zsh loaded: "$(($(date +%s%N)/1000000-$timer2))
 # ----------------------  THEME  ----------------------
 $DEBUG && timer3=$(($(date +%s%N)/1000000))
 if [[ -e "$HOME/.zsh/user-p10k.zsh" ]]; then
-	source $HOME/.zsh/user-p10k.zsh
+	source "$HOME/.zsh/user-p10k.zsh"
 else
-	source $HOME/.zsh/p10k.zsh
+	source "$HOME/.zsh/p10k.zsh"
 fi
-source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme
+source "$HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme"
 $DEBUG && echo "theme loaded: "$(($(date +%s%N)/1000000-$timer3))
 
 # ---------------------- SYNTAX  ----------------------
