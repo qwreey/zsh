@@ -4,6 +4,7 @@ history
 user-before.zsh
 user-after.zsh
 user-lazy.zsh
+user-p10k.zsh
 zcompdump-*
 nvm/*
 nvm/
