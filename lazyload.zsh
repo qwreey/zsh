@@ -27,7 +27,18 @@ zupdate() {
 	fnvm_update
 	omz update
 	zcompile_all
+	date -u "+%s" > "$HOME/.zsh/updated-at"
 }
+
+# update notification
+if [[ -z "$NO_UPDATE_NOFITICATION" ]]; then
+	now=$(date -u "+%s")
+	[ -n "$HOME/.zsh/updated-at" ] && ( echo $now > "$HOME/.zsh/updated-at" )
+	[[ "$(( `date -u "+%s"` > `cat "$HOME/.zsh/updated-at"` + 2592000 ))" == 1 ]] && printf "%s" "You haven't updated omz in a month. Type \"zupdate\" to update omz.
+	To suppress this message, put
+	export NO_UPDATE_NOFITICATION=\"true\"
+	in your user-before.zsh"
+fi
 
 # Git commands
 # From https://github.com/cmilr/Git-Beautify-For-MacOS-Terminal/blob/master/bash_profile

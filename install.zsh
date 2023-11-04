@@ -24,5 +24,6 @@ echo Setup nodejs . . .
 nvm install node
 nvm version current > $HOME/.nvmrc.default
 echo nodejs installed!
+date -u "+%s" > "$HOME/.zsh/updated-at"
 echo restarting . . .
 exec zsh
