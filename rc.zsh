@@ -170,6 +170,9 @@ source $HOME/.zsh/p10k.zsh
 source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 $DEBUG && echo "theme loaded: "$(($(date +%s%N)/1000000-$timer3))
 
+# ---------------------- SYNTAX  ----------------------
+source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
 # ----------------------  AFTER  ----------------------
 [ -e "$HOME/.zsh/user-after.zsh" ] && source $HOME/.zsh/user-after.zsh
 $DEBUG && echo "SUM: "$(($(date +%s%N)/1000000-$timer1))

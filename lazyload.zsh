@@ -10,6 +10,7 @@ zcompile_all() {
 	zcompile ~/.zsh/nvm/nvm.sh
 	zcompile ~/.zsh/fnvm/fnvm.sh
 	zcompile ~/.zsh/defer/zsh-defer.plugin.zsh
+	zcompile ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 	( rm ~/.zsh/omz/lib/*.zsh.zwc -f ) 2>/dev/null
 	find ~/.zsh/powerlevel10k/*.zsh-theme | xargs -i zsh -c 'zcompile {}'
 	find ~/.zsh/powerlevel10k/internal/*.zsh | xargs -i zsh -c 'zcompile {}'
