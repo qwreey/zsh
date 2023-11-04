@@ -166,7 +166,11 @@ $DEBUG && echo "oh my zsh loaded: "$(($(date +%s%N)/1000000-$timer2))
 
 # ----------------------  THEME  ----------------------
 $DEBUG && timer3=$(($(date +%s%N)/1000000))
-source $HOME/.zsh/p10k.zsh
+if [[ -e "$HOME/.zsh/user-p10k.zsh" ]]; then
+	source $HOME/.zsh/user-p10k.zsh
+else
+	source $HOME/.zsh/p10k.zsh
+fi
 source $HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme
 $DEBUG && echo "theme loaded: "$(($(date +%s%N)/1000000-$timer3))
 
