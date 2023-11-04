@@ -1,4 +1,9 @@
-# set DEBUG=true on .zshrc to active debug mode
+# set export DEBUG="true" on .zshrc to active debug mode
+if [[ "$DEBUG"="true" ]]; then
+	$DEBUG=true
+else
+	$DEBUG=false
+fi
 $DEBUG && timer_main=$(($(date +%s%N)/1000000)) && echo .zshrc load started
 
 # ----------------------  CONFIG  ----------------------
