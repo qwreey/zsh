@@ -5,19 +5,20 @@ zcompile_all() {
 	[ -e "$HOME/.zsh/user-before.zsh" ] && zcompile ~/.zsh/user-before.zsh
 	[ -e "$HOME/.zsh/user-after.zsh" ] && zcompile ~/.zsh/user-after.zsh
 	[ -e "$HOME/.zsh/user-p10k.zsh" ] && zcompile ~/.zsh/user-p10k.zsh
-	zcompile ~/.zsh/rc.zsh
-	zcompile ~/.zsh/lazyload.zsh
-	zcompile ~/.zsh/p10k.zsh
-	zcompile ~/.zsh/nvm/nvm.sh
-	zcompile ~/.zsh/fnvm/fnvm.sh
-	zcompile ~/.zsh/defer/zsh-defer.plugin.zsh
-	zcompile ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-	( rm ~/.zsh/omz/lib/*.zsh.zwc -f ) 2>/dev/null
-	find ~/.zsh/powerlevel10k/*.zsh-theme | xargs -i zsh -c 'zcompile {}'
-	find ~/.zsh/powerlevel10k/internal/*.zsh | xargs -i zsh -c 'zcompile {}'
-	find ~/.zsh/powerlevel10k/gitstatus/*.zsh | xargs -i zsh -c 'zcompile {}'
-	( find ~/.zsh/omz/lib/*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
-	( find ~/.zsh/zcompdump*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
+	zcompile "$HOME/.zsh/rc.zsh"
+	zcompile "$HOME/.zsh/lazyload.zsh"
+	zcompile "$HOME/.zsh/p10k.zsh"
+	zcompile "$HOME/.zsh/nvm/nvm.sh"
+	zcompile "$HOME/.zsh/fnvm/fnvm.sh"
+	zcompile "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
+	zcompile "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+	( rm "$HOME/.zsh/omz/lib/*.zsh.zwc" -f ) 2>/dev/null
+	find "$HOME/.zsh/powerlevel10k/*.zsh-theme" | xargs -i zsh -c 'zcompile {}'
+	find "$HOME/.zsh/powerlevel10k/internal/*.zsh" | xargs -i zsh -c 'zcompile {}'
+	find "$HOME/.zsh/powerlevel10k/gitstatus/*.zsh" | xargs -i zsh -c 'zcompile {}'
+	( find "$HOME/.zsh/omz/lib/*.zsh" | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
+	( find "$HOME/.zsh/zcompdump*.zsh" | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
+	find "$HOME/.zsh/zsh-syntax-highlighting" | grep ".zsh$" | xargs -i zsh -c 'zcompile {}'
 }
 zupdate() {
 	git -C $HOME/.zsh/fnvm pull origin master --depth 1

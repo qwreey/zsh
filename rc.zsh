@@ -30,6 +30,14 @@ export ZSH_CACHE_DIR="$ZSH/cache"
 
 mkdir -p "$ZSH_CACHE_DIR/completions"
 
+# Figure out the SHORT hostname
+if [[ "$OSTYPE" = darwin* ]]; then
+  # macOS's $HOST changes with dhcp, etc. Use ComputerName if possible.
+  SHORT_HOST=$(scutil --get ComputerName 2>/dev/null) || SHORT_HOST="${HOST/.*/}"
+else
+  SHORT_HOST="${HOST/.*/}"
+fi
+
 # add a function path
 fpath=("$ZSH/functions" "$ZSH/completions" $fpath)
 autoload -U compaudit compinit zrecompile
