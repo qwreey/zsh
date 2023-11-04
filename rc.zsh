@@ -8,12 +8,12 @@ export FNVM_DIR=$HOME/.zsh/fnvm
 export NVM_DIR=$HOME/.zsh/nvm
 
 # load defer
-source $HOME/.zsh/defer/zsh-defer.plugin.zsh
+source "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
 
 # nvm
 zsh-defer +1 +2 -c 'source $HOME/.zsh/fnvm/fnvm.sh; fnvm_init'
 # lazyload
-zsh-defer +1 +2 source $HOME/.zsh/lazyload.zsh
+zsh-defer +1 +2 source "$HOME/.zsh/lazyload.zsh"
 [ -e "$HOME/.zsh/user-lazy.zsh" ] && zsh-defer +1 +2 source $HOME/.zsh/user-lazy.zsh
 
 # user config
