@@ -6,7 +6,15 @@ if [[ -e "$HOME/.zsh" ]]; then
     mv "$HOME/.zsh/omz/custom" "$HOME/omz-custom.bak"
     rm -rf $HOME/.zsh
 fi
-git clone https://github.com/qwreey75/zsh $HOME/.zsh --depth 1 --recursive
+
+git clone https://github.com/qwreey75/zsh "$HOME/.zsh" --depth 1
+git clone https://github.com/romkatv/zsh-defer "$HOME/.zsh/defer" --depth 1
+git clone https://github.com/qwreey75/fnvm "$HOME/.zsh/fnvm" --depth 1
+git clone https://github.com/nvm-sh/nvm "$HOME/.zsh/nvm" --depth 1
+git clone https://github.com/ohmyzsh/ohmyzsh "$HOME/.zsh/omz" --depth 1
+git clone https://github.com/romkatv/powerlevel10k "$HOME/.zsh/powerlevel10k" --depth 1
+git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting" --depth 1
+
 [ -e "$HOME/user-lazy.zsh.bak" ] && mv "$HOME/user-lazy.zsh.bak" "$HOME/.zsh/user-lazy.zsh" 
 [ -e "$HOME/user-after.zsh.bak" ] && mv "$HOME/user-after.zsh.bak" "$HOME/.zsh/user-after.zsh"
 [ -e "$HOME/user-before.zsh.bak" ] && mv "$HOME/user-before.zsh.bak" "$HOME/.zsh/user-before.zsh"
@@ -14,15 +22,15 @@ git clone https://github.com/qwreey75/zsh $HOME/.zsh --depth 1 --recursive
 [ -e "$HOME/omz-custom.bak" ] && mv "$HOME/omz-custom.bak" "$HOME/.zsh/omz/custom"
 
 [ -e "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/.zshrc.bak" && echo "Backup ~/.zshrc into ~/.zshrc.bak"
-cp $HOME/.zsh/.zshrc $HOME
-source $HOME/.zsh/rc.zsh
-source $HOME/.zsh/lazyload.zsh
-export NVM_DIR=$HOME/.zsh/nvm
-source $HOME/.zsh/nvm/nvm.sh
+cp "$HOME/.zsh/.zshrc" "$HOME"
+source "$HOME/.zsh/rc.zsh"
+source "$HOME/.zsh/lazyload.zsh"
+export NVM_DIR="$HOME/.zsh/nvm"
+source "$HOME/.zsh/nvm/nvm.sh"
 zcompile_all; echo Recompiled all of zsh
 echo Setup nodejs . . .
 nvm install node
-nvm version current > $HOME/.nvmrc.default
+nvm version current > "$HOME/.nvmrc.default"
 echo nodejs installed!
 date -u "+%s" > "$HOME/.zsh/updated-at"
 echo restarting . . .

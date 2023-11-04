@@ -1,3 +1,4 @@
+updated-at
 private.zsh
 *.zwc
 history
@@ -6,8 +7,11 @@ user-after.zsh
 user-lazy.zsh
 user-p10k.zsh
 zcompdump-*
-nvm/*
 nvm/
-omz/*
 omz/
-updated-at
+defer/
+fnvm/
+nvm/
+omz/
+powerlevel10k/
+zsh-syntax-highlighting/

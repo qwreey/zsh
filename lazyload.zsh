@@ -20,6 +20,7 @@ zcompile_all() {
 	( find ~/.zsh/zcompdump*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
 }
 zupdate() {
+	git -C $HOME/.zsh/fnvm pull origin master --depth 1
 	git -C $HOME/.zsh/defer pull origin master --depth 1
 	git -C $HOME/.zsh/nvm pull origin master --depth 1
 	git -C $HOME/.zsh/powerlevel10k pull origin master --depth 1
