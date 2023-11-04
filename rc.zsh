@@ -1,5 +1,5 @@
-DEBUG=false
-$DEBUG && timer1=$(($(date +%s%N)/1000000)) && echo .zshrc load started
+# set DEBUG=true on .zshrc to active debug mode
+$DEBUG && timer_main=$(($(date +%s%N)/1000000)) && echo .zshrc load started
 
 # ----------------------  CONFIG  ----------------------
 export HISTFIL="$HOME/.zsh/history"
@@ -27,7 +27,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 (echo $PATH | grep .local/bin > /dev/null) || export PATH="$PATH:$HOME/.local/bin"
 
 # ----------------------  ZSH  ----------------------
-$DEBUG && timer2=$(($(date +%s%N)/1000000))
+$DEBUG && timer_omz=$(($(date +%s%N)/1000000))
 export ZSH="$HOME/.zsh/omz"
 export ZSH_CUSTOM="$ZSH/custom"
 export ZSH_CACHE_DIR="$ZSH/cache"
@@ -137,6 +137,7 @@ _omz_source() {
 
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
 # TIP: Add files you don't want in git to .gitignore
+$DEBUG && timer_libs=$(($(date +%s%N)/1000000))
 for config_file ("$ZSH"/lib/*.zsh); do
 	file="${config_file:t}"
 	[ "$file" != "correction.zsh" ] &&
@@ -146,6 +147,7 @@ for config_file ("$ZSH"/lib/*.zsh); do
 	_omz_source "lib/$file"
 done
 unset custom_config_file
+$DEBUG && timer_libs_result=$(($(date +%s%N)/1000000-$timer_libs))
 
 autoload -U colors && colors
 autoload -Uz is-at-least
@@ -160,11 +162,15 @@ setopt long_list_jobs
 setopt interactivecomments
 setopt prompt_subst
 
+$DEBUG && timer_plugins=$(($(date +%s%N)/1000000)) && timer_plugins_text=""
 # Load all of the plugins that were defined in ~/.zshrc
 for plugin ($plugins); do
+	$DEBUG && timer_plugin=$(($(date +%s%N)/1000000))
 	_omz_source "plugins/$plugin/$plugin.plugin.zsh"
+	$DEBUG && timer_plugins_text="    - $plugin: "$(($(date +%s%N)/1000000-$timer_plugin))"\n$timer_plugins_text"
 done
 unset plugin
+$DEBUG && timer_plugins_result=$(($(date +%s%N)/1000000-$timer_plugins))
 
 # Load all of your custom configurations from custom/
 for config_file ("$ZSH_CUSTOM"/*.zsh(N)); do
@@ -175,22 +181,24 @@ unset config_file
 # set completion colors to be the same as `ls`, after theme has been loaded
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 
-$DEBUG && echo "oh my zsh loaded: "$(($(date +%s%N)/1000000-$timer2))
+$DEBUG && echo "OMZ loaded: "$(($(date +%s%N)/1000000-$timer_omz))"\n - Plugins: $timer_plugins_result\n$timer_plugins_text - Libs: $timer_libs_result"
 
 # ----------------------  THEME  ----------------------
-$DEBUG && timer3=$(($(date +%s%N)/1000000))
+$DEBUG && timer_theme=$(($(date +%s%N)/1000000))
 if [[ -e "$HOME/.zsh/user-p10k.zsh" ]]; then
 	source "$HOME/.zsh/user-p10k.zsh"
 else
 	source "$HOME/.zsh/p10k.zsh"
 fi
 source "$HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme"
-$DEBUG && echo "theme loaded: "$(($(date +%s%N)/1000000-$timer3))
+$DEBUG && echo "Theme (p10k) loaded: "$(($(date +%s%N)/1000000-$timer_theme))
 
 # ---------------------- SYNTAX  ----------------------
+$DEBUG && timer_syntax=$(($(date +%s%N)/1000000))
 source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+$DEBUG && echo "Syntax Highlighting loaded: "$(($(date +%s%N)/1000000-$timer_syntax))
 
 # ----------------------  AFTER  ----------------------
 [ -e "$HOME/.zsh/user-after.zsh" ] && source $HOME/.zsh/user-after.zsh
-$DEBUG && echo "SUM: "$(($(date +%s%N)/1000000-$timer1))
+$DEBUG && echo "SUM: "$(($(date +%s%N)/1000000-$timer_main))
 true
