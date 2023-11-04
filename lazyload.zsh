@@ -12,13 +12,13 @@ zcompile_all() {
 	zcompile "$HOME/.zsh/fnvm/fnvm.sh"
 	zcompile "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
 	zcompile "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-	( rm "$HOME/.zsh/omz/lib/*.zsh.zwc" -f ) 2>/dev/null
-	find "$HOME/.zsh/powerlevel10k/*.zsh-theme" | xargs -i zsh -c 'zcompile {}'
-	find "$HOME/.zsh/powerlevel10k/internal/*.zsh" | xargs -i zsh -c 'zcompile {}'
-	find "$HOME/.zsh/powerlevel10k/gitstatus/*.zsh" | xargs -i zsh -c 'zcompile {}'
-	( find "$HOME/.zsh/omz/lib/*.zsh" | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
-	( find "$HOME/.zsh/zcompdump*.zsh" | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
-	find "$HOME/.zsh/zsh-syntax-highlighting" | grep ".zsh$" | xargs -i zsh -c 'zcompile {}'
+	( rm "$HOME"/.zsh/omz/lib/**/*.zsh.zwc -f ) 2>/dev/null
+	find "$HOME"/.zsh/powerlevel10k/**/*.zsh-theme | xargs -i zsh -c 'zcompile {}'
+	find "$HOME"/.zsh/powerlevel10k/internal/**/*.zsh | xargs -i zsh -c 'zcompile {}'
+	find "$HOME"/.zsh/powerlevel10k/gitstatus/**/*.zsh | xargs -i zsh -c 'zcompile {}'
+	( find "$HOME"/.zsh/omz/lib/**/*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
+	( find "$HOME"/.zsh/zcompdump*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
+	find "$HOME"/.zsh/zsh-syntax-highlighting/**/*.zsh | xargs -i zsh -c 'zcompile {}'
 }
 zupdate() {
 	git -C $HOME/.zsh/fnvm pull origin master --depth 1
