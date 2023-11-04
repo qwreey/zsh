@@ -17,7 +17,6 @@ source $HOME/.zsh/rc.zsh
 source $HOME/.zsh/lazyload.zsh
 export NVM_DIR=$HOME/.zsh/nvm
 source $HOME/.zsh/nvm/nvm.sh
-omztrim; echo Trimmed zsh libs
 zcompile_all; echo Recompiled all of zsh
 echo Setup nodejs . . .
 nvm install node
