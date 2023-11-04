@@ -66,11 +66,11 @@ alias remotes="printf '$txtpur' ; git remote -v && printf '$bldcyn\n' ; git bran
 # autoload -U colors && colors
 
 # use diff color
-alias diff --color "$@"
+# alias diff --color "$@"
 
 # use ls color
-source <([ -e "$HOME/.dircolors" ] && dircolors -b "$HOME/.dircolors" || dircolors -b)
-alias ls='ls --color=tty'
+# source <([ -e "$HOME/.dircolors" ] && dircolors -b "$HOME/.dircolors" || dircolors -b)
+# alias ls='ls --color=tty'
 
 # Expand variables and commands in PROMPT variables
 # setopt prompt_subst

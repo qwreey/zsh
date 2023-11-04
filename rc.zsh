@@ -21,6 +21,11 @@ DISABLE_AUTO_TITLE="true" # more performance!
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 [ -e "$HOME/.zsh/user-before.zsh" ] && source $HOME/.zsh/user-before.zsh
 
+# yarn/cargo/local bin
+(echo $PATH | grep .yarn/bin > /dev/null) || export PATH="$PATH:$HOME/.yarn/bin"
+(echo $PATH | grep .cargo/bin > /dev/null) || export PATH="$PATH:$HOME/.cargo/bin"
+(echo $PATH | grep .local/bin > /dev/null) || export PATH="$PATH:$HOME/.local/bin"
+
 # ----------------------  ZSH  ----------------------
 $DEBUG && timer2=$(($(date +%s%N)/1000000))
 export ZSH="$HOME/.zsh/omz"

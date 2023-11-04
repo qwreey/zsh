@@ -31,6 +31,7 @@ zcompile_all; echo Recompiled all of zsh
 echo Setup nodejs . . .
 nvm install node
 nvm version current > "$HOME/.nvmrc.default"
+corepack enable
 echo nodejs installed!
 date -u "+%s" > "$HOME/.zsh/updated-at"
 echo restarting . . .
