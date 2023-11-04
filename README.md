@@ -30,4 +30,6 @@ plugins=( git copyfile copypath )
 $HOME/.zsh/user-after.zsh will loaded after omz loaded
 and $HOME/.zsh/user-lazy.zsh will loaded by zsh-defer
 
+$HOME/.zsh/user-p10k.zsh will loaded for p10k if exist
+
 If you want to configure p10k. type `p10k configure`
