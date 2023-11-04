@@ -4,6 +4,7 @@ zcompile_all() {
 	[ -e "$HOME/.zsh/user-lazy.zsh" ] && zcompile ~/.zsh/user-lazy.zsh
 	[ -e "$HOME/.zsh/user-before.zsh" ] && zcompile ~/.zsh/user-before.zsh
 	[ -e "$HOME/.zsh/user-after.zsh" ] && zcompile ~/.zsh/user-after.zsh
+	[ -e "$HOME/.zsh/user-p10k.zsh" ] && zcompile ~/.zsh/user-p10k.zsh
 	zcompile ~/.zsh/rc.zsh
 	zcompile ~/.zsh/lazyload.zsh
 	zcompile ~/.zsh/p10k.zsh
@@ -19,9 +20,10 @@ zcompile_all() {
 	( find ~/.zsh/zcompdump*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
 }
 zupdate() {
-	git -C $HOME/.zsh/defer pull --depth 1
-	git -C $HOME/.zsh/nvm pull --depth 1
-	git -C $HOME/.zsh/powerlevel10k pull --depth 1
+	git -C $HOME/.zsh/defer pull origin master --depth 1
+	git -C $HOME/.zsh/nvm pull origin master --depth 1
+	git -C $HOME/.zsh/powerlevel10k pull origin master --depth 1
+	git -C $HOME/.zsh/zsh-syntax-highlighting pull origin master --depth 1
 	fnvm_update
 	omz update
 	zcompile_all
