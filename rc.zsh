@@ -200,7 +200,9 @@ $DEBUG && echo "Theme (p10k) loaded: "$(($(date +%s%N)/1000000-$timer_theme))
 
 # ---------------------- SYNTAX  ----------------------
 $DEBUG && timer_syntax=$(($(date +%s%N)/1000000))
-source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ "$DISABLE_SYNTAX_HIGHLIGHTING" != "true" ]]; then
+	source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
 $DEBUG && echo "Syntax Highlighting loaded: "$(($(date +%s%N)/1000000-$timer_syntax))
 
 # ----------------------  AFTER  ----------------------
