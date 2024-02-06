@@ -118,6 +118,11 @@ function dirzsh:unload {
 	DIRZSH_LOADED=()
 }
 
+function dirzsh:reload {
+	dirzsh:unload
+	dirzsh:apply
+}
+
 # Hook
 autoload -U add-zsh-hook
 add-zsh-hook chpwd dirzsh:apply
