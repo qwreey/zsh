@@ -13,5 +13,6 @@ defer/
 fnvm/
 nvm/
 omz/
+pyenv/
 powerlevel10k/
 zsh-syntax-highlighting/

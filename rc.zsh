@@ -11,6 +11,7 @@ export HISTFIL="$HOME/.zsh/history"
 export FNVM_NVMDIR="$HOME/.zsh/nvm"
 export FNVM_DIR="$HOME/.zsh/fnvm"
 export NVM_DIR="$HOME/.zsh/nvm"
+export PYENV_ROOT="$HOME/.zsh/pyenv"
 
 # load defer
 source "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
@@ -18,22 +19,27 @@ source "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
 # nvm
 zsh-defer +1 +2 -c 'source $HOME/.zsh/fnvm/fnvm.sh; fnvm_init'
 
-# lib
+# load base libs
 source "$HOME/.zsh/lib.zsh"
 
 # lazyload
 zsh-defer +1 +2 source "$HOME/.zsh/lazyload.zsh"
 [ -e "$HOME/.zsh/user-lazy.zsh" ] && zsh-defer +1 +2 source $HOME/.zsh/user-lazy.zsh
 
-# user config
+# load user config
 DISABLE_AUTO_TITLE="true" # more performance!
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 [ -e "$HOME/.zsh/user-before.zsh" ] && source $HOME/.zsh/user-before.zsh
 
-# yarn/cargo/local bin
-(echo $PATH | grep .yarn/bin > /dev/null) || export PATH="$PATH:$HOME/.yarn/bin"
-(echo $PATH | grep .cargo/bin > /dev/null) || export PATH="$PATH:$HOME/.cargo/bin"
-(echo $PATH | grep .local/bin > /dev/null) || export PATH="$PATH:$HOME/.local/bin"
+# Add common bin dirs
+(! (($path[(Ie)$HOME/.yarn/bin])) ) && path+=( "$HOME/.yarn/bin" )
+(! (($path[(Ie)$HOME/.cargo/bin])) ) && path+=( "$HOME/.cargo/bin" )
+(! (($path[(Ie)$HOME/.local/bin])) ) && path+=( "$HOME/.local/bin" )
+(! (($path[(Ie)$HOME/.zsh/pyenv/bin])) ) && path=( "$HOME/.zsh/pyenv/bin" $path )
+export PATH
+# (echo $PATH | grep $HOME/.yarn/bin > /dev/null) || export PATH="$PATH:$HOME/.yarn/bin"
+# (echo $PATH | grep $HOME/.cargo/bin > /dev/null) || export PATH="$PATH:$HOME/.cargo/bin"
+# (echo $PATH | grep $HOME/.local/bin > /dev/null) || export PATH="$PATH:$HOME/.local/bin"
 
 # ----------------------  ZSH  ----------------------
 $DEBUG && timer_omz=$(($(date +%s%N)/1000000))

@@ -14,6 +14,7 @@ git clone https://github.com/nvm-sh/nvm "$HOME/.zsh/nvm" --depth 1
 git clone https://github.com/ohmyzsh/ohmyzsh "$HOME/.zsh/omz" --depth 1
 git clone https://github.com/romkatv/powerlevel10k "$HOME/.zsh/powerlevel10k" --depth 1
 git clone https://github.com/zsh-users/zsh-syntax-highlighting "$HOME/.zsh/zsh-syntax-highlighting" --depth 1
+curl https://pyenv.run | PYENV_ROOT="$HOME/.zsh/pyenv" bash
 
 [ -e "$HOME/user-lazy.zsh.bak" ] && mv "$HOME/user-lazy.zsh.bak" "$HOME/.zsh/user-lazy.zsh" 
 [ -e "$HOME/user-after.zsh.bak" ] && mv "$HOME/user-after.zsh.bak" "$HOME/.zsh/user-after.zsh"
