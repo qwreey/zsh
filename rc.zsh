@@ -7,35 +7,38 @@ fi
 $DEBUG && timer_main=$(($(date +%s%N)/1000000)) && echo .zshrc load started
 
 # ----------------------  CONFIG  ----------------------
-export HISTFIL="$HOME/.zsh/history"
-export FNVM_NVMDIR="$HOME/.zsh/nvm"
-export FNVM_DIR="$HOME/.zsh/fnvm"
-export NVM_DIR="$HOME/.zsh/nvm"
-export PYENV_ROOT="$HOME/.zsh/pyenv"
+export HISTFILE="$ZSHDIR/history"
+export FNVM_NVMDIR="$ZSHDIR/nvm"
+export FNVM_DIR="$ZSHDIR/fnvm"
+export NVM_DIR="$ZSHDIR/nvm"
+export PYENV_ROOT="$ZSHDIR/pyenv"
 
 # load defer
-source "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
+source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
 
 # nvm
-zsh-defer +1 +2 -c 'source $HOME/.zsh/fnvm/fnvm.sh; fnvm_init'
+zsh-defer +1 +2 -c 'source $ZSHDIR/fnvm/fnvm.sh; fnvm_init'
+
+# pyenv
+zsh-defer +1 +2 -c 'eval "$(pyenv init -)"'
 
 # load base libs
-source "$HOME/.zsh/lib.zsh"
+source "$ZSHDIR/lib.zsh"
 
 # lazyload
-zsh-defer +1 +2 source "$HOME/.zsh/lazyload.zsh"
-[ -e "$HOME/.zsh/user-lazy.zsh" ] && zsh-defer +1 +2 source $HOME/.zsh/user-lazy.zsh
+zsh-defer +1 +2 source "$ZSHDIR/lazyload.zsh"
+[ -e "$ZSHDIR/user-lazy.zsh" ] && zsh-defer +1 +2 source $ZSHDIR/user-lazy.zsh
 
 # load user config
 DISABLE_AUTO_TITLE="true" # more performance!
 DISABLE_UNTRACKED_FILES_DIRTY="true"
-[ -e "$HOME/.zsh/user-before.zsh" ] && source $HOME/.zsh/user-before.zsh
+[ -e "$ZSHDIR/user-before.zsh" ] && source $ZSHDIR/user-before.zsh
 
 # Add common bin dirs
 (! (($path[(Ie)$HOME/.yarn/bin])) ) && path+=( "$HOME/.yarn/bin" )
 (! (($path[(Ie)$HOME/.cargo/bin])) ) && path+=( "$HOME/.cargo/bin" )
 (! (($path[(Ie)$HOME/.local/bin])) ) && path+=( "$HOME/.local/bin" )
-(! (($path[(Ie)$HOME/.zsh/pyenv/bin])) ) && path=( "$HOME/.zsh/pyenv/bin" $path )
+(! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
 export PATH
 # (echo $PATH | grep $HOME/.yarn/bin > /dev/null) || export PATH="$PATH:$HOME/.yarn/bin"
 # (echo $PATH | grep $HOME/.cargo/bin > /dev/null) || export PATH="$PATH:$HOME/.cargo/bin"
@@ -43,7 +46,7 @@ export PATH
 
 # ----------------------  ZSH  ----------------------
 $DEBUG && timer_omz=$(($(date +%s%N)/1000000))
-export ZSH="$HOME/.zsh/omz"
+export ZSH="$ZSHDIR/omz"
 export ZSH_CUSTOM="$ZSH/custom"
 export ZSH_CACHE_DIR="$ZSH/cache"
 [ -z "$plugins" ] && plugins=( git copyfile copypath ) # git web-search copypath copyfile copybuffer dirhistory
@@ -82,7 +85,7 @@ for plugin ($plugins); do
 done
 
 # Save the location of the current completion dump file.
-ZSH_COMPDUMP="$HOME/.zsh/zcompdump-${ZSH_VERSION}.zsh"
+ZSH_COMPDUMP="$ZSHDIR/zcompdump-${ZSH_VERSION}.zsh"
 
 # Construct zcompdump OMZ metadata
 zcompdump_revision="#omz revision: $(builtin cd -q "$ZSH"; git rev-parse HEAD 2>/dev/null)"
@@ -119,14 +122,14 @@ _omz_source() {
 	esac
 
 	# local disable_aliases=0
-	# zstyle -T ":omz:${context}" aliases || disable_aliases=1
+	zstyle -T ":omz:${context}" aliases || disable_aliases=1
 
 	# Back up alias names prior to sourcing
-	# local -A aliases_pre galiases_pre
-	# if (( disable_aliases )); then
-	# 	aliases_pre=("${(@kv)aliases}")
-	# 	galiases_pre=("${(@kv)galiases}")
-	# fi
+	local -A aliases_pre galiases_pre
+	if (( disable_aliases )); then
+		aliases_pre=("${(@kv)aliases}")
+		galiases_pre=("${(@kv)galiases}")
+	fi
 
 	# Source file from $ZSH_CUSTOM if it exists, otherwise from $ZSH
 	if [[ -f "$ZSH_CUSTOM/$filepath" ]]; then
@@ -136,18 +139,18 @@ _omz_source() {
 	fi
 
 	# Unset all aliases that don't appear in the backed up list of aliases
-	# if (( disable_aliases )); then
-	# 	if (( #aliases_pre )); then
-	# 		aliases=("${(@kv)aliases_pre}")
-	# 	else
-	# 		(( #aliases )) && unalias "${(@k)aliases}"
-	# 	fi
-	# 	if (( #galiases_pre )); then
-	# 		galiases=("${(@kv)galiases_pre}")
-	# 	else
-	# 		(( #galiases )) && unalias "${(@k)galiases}"
-	# 	fi
-	# fi
+	if (( disable_aliases )); then
+		if (( #aliases_pre )); then
+			aliases=("${(@kv)aliases_pre}")
+		else
+			(( #aliases )) && unalias "${(@k)aliases}"
+		fi
+		if (( #galiases_pre )); then
+			galiases=("${(@kv)galiases_pre}")
+		else
+			(( #galiases )) && unalias "${(@k)galiases}"
+		fi
+	fi
 }
 
 # Load all of the config files in ~/oh-my-zsh that end in .zsh
@@ -200,22 +203,22 @@ $DEBUG && echo "OMZ loaded: "$(($(date +%s%N)/1000000-$timer_omz))"\n - Plugins:
 
 # ----------------------  THEME  ----------------------
 $DEBUG && timer_theme=$(($(date +%s%N)/1000000))
-if [[ -e "$HOME/.zsh/user-p10k.zsh" ]]; then
-	source "$HOME/.zsh/user-p10k.zsh"
+if [[ -e "$ZSHDIR/user-p10k.zsh" ]]; then
+	source "$ZSHDIR/user-p10k.zsh"
 else
-	source "$HOME/.zsh/p10k.zsh"
+	source "$ZSHDIR/p10k.zsh"
 fi
-source "$HOME/.zsh/powerlevel10k/powerlevel10k.zsh-theme"
+source "$ZSHDIR/powerlevel10k/powerlevel10k.zsh-theme"
 $DEBUG && echo "Theme (p10k) loaded: "$(($(date +%s%N)/1000000-$timer_theme))
 
 # ---------------------- SYNTAX  ----------------------
 $DEBUG && timer_syntax=$(($(date +%s%N)/1000000))
 if [[ "$DISABLE_SYNTAX_HIGHLIGHTING" != "true" ]]; then
-	source "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+	source "$ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 $DEBUG && echo "Syntax Highlighting loaded: "$(($(date +%s%N)/1000000-$timer_syntax))
 
 # ----------------------  AFTER  ----------------------
-[ -e "$HOME/.zsh/user-after.zsh" ] && source $HOME/.zsh/user-after.zsh
+[ -e "$ZSHDIR/user-after.zsh" ] && source $ZSHDIR/user-after.zsh
 $DEBUG && echo "SUM: "$(($(date +%s%N)/1000000-$timer_main))
 true
