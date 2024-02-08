@@ -41,9 +41,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 (! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
 (! (($path[(Ie)$ZSHDIR/bin])) ) && path=( "$ZSHDIR/bin" $path )
 export PATH
-# (echo $PATH | grep $HOME/.yarn/bin > /dev/null) || export PATH="$PATH:$HOME/.yarn/bin"
-# (echo $PATH | grep $HOME/.cargo/bin > /dev/null) || export PATH="$PATH:$HOME/.cargo/bin"
-# (echo $PATH | grep $HOME/.local/bin > /dev/null) || export PATH="$PATH:$HOME/.local/bin"
 
 # ----------------------  ZSH  ----------------------
 $DEBUG && timer_omz=$(($(date +%s%N)/1000000))
@@ -159,10 +156,10 @@ _omz_source() {
 $DEBUG && timer_libs=$(($(date +%s%N)/1000000))
 for config_file ("$ZSH"/lib/*.zsh); do
 	file="${config_file:t}"
-	[ "$file" != "correction.zsh" ] &&
-	[ "$file" != "directories.zsh" ] &&
-	[ "$file" != "grep.zsh" ] &&
-	[ "$file" != "misc.zsh" ] &&
+	#[ "$file" != "correction.zsh" ] &&
+	#[ "$file" != "directories.zsh" ] &&
+	#[ "$file" != "grep.zsh" ] &&
+	#[ "$file" != "misc.zsh" ] &&
 	_omz_source "lib/$file"
 done
 unset custom_config_file
