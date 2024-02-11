@@ -17,4 +17,5 @@ pyenv/
 powerlevel10k/
 zsh-syntax-highlighting/
 bin/**
+codename
 

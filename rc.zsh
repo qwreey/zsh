@@ -35,9 +35,9 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 [ -e "$ZSHDIR/user-before.zsh" ] && source $ZSHDIR/user-before.zsh
 
 # Add common bin dirs
-(! (($path[(Ie)$HOME/.yarn/bin])) ) && path=( "$HOME/.yarn/bin" $PATH )
-(! (($path[(Ie)$HOME/.cargo/bin])) ) && path=( "$HOME/.cargo/bin" $PATH )
-(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $PATH )
+(! (($path[(Ie)$HOME/.yarn/bin])) ) && path=( "$HOME/.yarn/bin" $path )
+(! (($path[(Ie)$HOME/.cargo/bin])) ) && path=( "$HOME/.cargo/bin" $path )
+(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $path )
 (! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
 (! (($path[(Ie)$ZSHDIR/bin])) ) && path=( "$ZSHDIR/bin" $path )
 export PATH

@@ -25,14 +25,14 @@ if [[ -e "$ZSHDIR" ]]; then
 fi
 
 # clone files
-log "Clone qwreey/zsh"            ; git clone https://github.com/qwreey75/zsh "$ZSHDIR" --depth 1
-log "Clone romkatv/zsh-defer"     ; git clone https://github.com/romkatv/zsh-defer "$ZSHDIR/defer" --depth 1
-log "Clone qwreey/fnvm"           ; git clone https://github.com/qwreey75/fnvm "$ZSHDIR/fnvm" --depth 1
-log "Clone nvm-sh/nvm"            ; git clone https://github.com/nvm-sh/nvm "$ZSHDIR/nvm" --depth 1
-log "Clone ohmyzsh/ohmyzsh"       ; git clone https://github.com/ohmyzsh/ohmyzsh "$ZSHDIR/omz" --depth 1
-log "Clone romkatv/powerlevel10k" ; git clone https://github.com/romkatv/powerlevel10k "$ZSHDIR/powerlevel10k" --depth 1
-log "Clone zsh-users/zsh-syntax-highlighting"
-git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSHDIR/zsh-syntax-highlighting" --depth 1
+log "Clone qwreey/zsh"                        ; git clone https://github.com/qwreey75/zsh "$ZSHDIR" --depth 1
+log "Clone romkatv/zsh-defer"                 ; git clone https://github.com/romkatv/zsh-defer "$ZSHDIR/defer" --depth 1
+log "Clone qwreey/fnvm"                       ; git clone https://github.com/qwreey75/fnvm "$ZSHDIR/fnvm" --depth 1
+log "Clone nvm-sh/nvm"                        ; git clone https://github.com/nvm-sh/nvm "$ZSHDIR/nvm" --depth 1
+log "Clone ohmyzsh/ohmyzsh"                   ; git clone https://github.com/ohmyzsh/ohmyzsh "$ZSHDIR/omz" --depth 1
+log "Clone romkatv/powerlevel10k"             ; git clone https://github.com/romkatv/powerlevel10k "$ZSHDIR/powerlevel10k" --depth 1
+log "Clone zsh-users/zsh-syntax-highlighting" ; git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSHDIR/zsh-syntax-highlighting" --depth 1
+log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSHDIR/zsh-autosuggestions" --depth 1
 log "Install pyenv"
 curl https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
 
