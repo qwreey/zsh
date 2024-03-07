@@ -14,7 +14,7 @@ oh-my-zsh was customized(disable autoupdate, such more) for performance. (it was
 
 execute install script
 ```
-eval "$(curl https://raw.githubusercontent.com/qwreey75/zsh/master/install.zsh)"
+eval "$(curl https://raw.githubusercontent.com/qwreey/zsh/master/install.zsh)"
 ```
 to clone omz, nvm, defer, fnvm and powerlevel10k into new .zsh (it will not overwrite your ohmyzsh, if you have ohmyzsh already, you can remove it)
 This script will update call `nvm use node` to initialize nodejs, and compile all zsh file to speed up your zsh
