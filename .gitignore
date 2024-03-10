@@ -16,6 +16,7 @@ omz/
 pyenv/
 powerlevel10k/
 zsh-syntax-highlighting/
+zsh-autosuggestions
 bin/**
 codename
 
