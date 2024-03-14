@@ -19,4 +19,5 @@ zsh-syntax-highlighting/
 zsh-autosuggestions
 bin/**
 codename
+codename.colored
 
