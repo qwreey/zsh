@@ -205,6 +205,7 @@ if [[ -e "$ZSHDIR/user-p10k.zsh" ]]; then
 	source "$ZSHDIR/user-p10k.zsh"
 else
 	source "$ZSHDIR/p10k.zsh"
+	source "$ZSHDIR/p10k.override.zsh"
 fi
 source "$ZSHDIR/powerlevel10k/powerlevel10k.zsh-theme"
 $DEBUG && echo "Theme (p10k) loaded: "$(($(date +%s%N)/1000000-$timer_theme))

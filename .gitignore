@@ -20,4 +20,5 @@ zsh-autosuggestions
 bin/**
 codename
 codename.colored
+zsh-autosuggestions/
 
