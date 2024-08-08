@@ -9,16 +9,6 @@ function lib:path-free {
 		if ! (($alloc[(Ie)$pathitem])); then
 			new+=( $pathitem )
 		fi
-		#local checked=0
-		#for item in $alloc; do
-		#	if [ "$item" == "$pathitem" ]; then
-		#		checked=1
-		#		break
-		#	fi
-		#done
-		#if [ "$checked" == "0" ]; then
-		#	new+=( $pathitem )
-		#fi
 	done
 	path=($new)
 	export PATH
@@ -31,6 +21,31 @@ function lib:path-alloc {
 	export PATH="$1"
 	shift
 	eval "$var=\$@"
+}
+alias path-alloc=lib:path-alloc
+
+function lib:path-alloc2 {
+	local var=$1
+	shift
+	local ret=()
+	local plist=()
+	local solpath
+	local found=0
+	for pathitem in $@; do
+		if [ "$pathitem" = ":" ]; then
+			plist+=( "$PATH" )
+			found=1
+		else
+			solpath="$(realpath $pathitem)"
+			ret+=( "$solpath" )
+			plist+=( "$solpath" )
+		fi
+	done
+	if [ "$found" = "0" ]; then
+		plist=( "$PATH" $found )
+	fi
+	export PATH="${(j/:/)plist}"
+	eval "$var=\$ret"
 }
 alias path-alloc=lib:path-alloc
 
