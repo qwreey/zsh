@@ -40,12 +40,11 @@ log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh
 if [ "$ZSHPYENV" = "true" ]; then
     log "Install pyenv"
     curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
-    export PYENV_ROOT="$ZSHDIR/pyenv"
-    eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
-    eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
-    pyenv install 3.12
-    pyenv virtualenv 3.12 default
-    pyenv activate default
+    # eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
+    # eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
+    PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv install 3.12
+    PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv virtualenv 3.12 default
+    PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv activate default
 fi
 if [ "$ZSHRUSTUP" = "true" ]; then
     log "Install rustup"
