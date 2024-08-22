@@ -14,11 +14,9 @@ export PYENV_ROOT="$ZSHDIR/pyenv"
 
 # unlimited history
 if [ -e "$ZSHDIR/history" ]; then
-	echo The behavior of putting history files inside .zsh was unstable and has been removed. Move this to your home folder.
+	echo "The behavior of putting history files inside .zsh was unstable and has been removed. Move this to your home folder."
 	echo
-	echo (move $ZSHDIR/history into $HOME/.zsh_history)
-
-	export HISTFILE="$ZSHDIR/history"
+	echo "(move $ZSHDIR/history into $HOME/.zsh_history)"
 fi
 export HISTSIZE=1000000000
 export SAVEHIST=$HISTSIZE
