@@ -40,6 +40,7 @@ log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh
 if [ "$ZSHPYENV" = "true" ]; then
     log "Install pyenv"
     curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
+    export PYENV_ROOT="$ZSHDIR/pyenv"
     eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
     eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
     pyenv install 3.12
