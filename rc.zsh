@@ -49,7 +49,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add common bin dirs
 (! (($path[(Ie)$HOME/.yarn/bin])) ) && path=( "$HOME/.yarn/bin" $path )
 (! (($path[(Ie)$HOME/.cargo/bin])) ) && path=( "$HOME/.cargo/bin" $path )
-(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $path )pyenv activate default
+(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $path )
 (! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
 (! (($path[(Ie)$ZSHDIR/bin])) ) && path=( "$ZSHDIR/bin" $path )
 export PATH
