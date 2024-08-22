@@ -14,6 +14,10 @@ oh-my-zsh was customized(disable autoupdate, such more) for performance. (it was
 
 execute install script
 ```
+ZSHFNVM="true"\ # Install fnvm
+ZSHNVM="true"\ # Install nvm. if enable fnvm, this option is required for it works.
+ZSHPYENV="true"\ # Install pyenv
+ZSHRUSTUP="true"\ # Install rustup
 ZSHDIR=~/.zsh eval "$(curl https://raw.githubusercontent.com/qwreey/zsh/master/install.zsh)"
 ```
 to clone omz, nvm, defer, fnvm and powerlevel10k into new .zsh (it will not overwrite your ohmyzsh, if you have ohmyzsh already, you can remove it)

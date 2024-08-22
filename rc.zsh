@@ -17,10 +17,13 @@ export PYENV_ROOT="$ZSHDIR/pyenv"
 source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
 
 # nvm
-zsh-defer +1 +2 -c 'source $ZSHDIR/fnvm/fnvm.sh; fnvm_init'
+[ -e "$ZSHDIR/fnvm" ] && zsh-defer +1 +2 -c 'source $ZSHDIR/fnvm/fnvm.sh; fnvm_init'
 
 # pyenv
-zsh-defer +1 +2 -c 'eval "$(pyenv init -)"'
+[ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"'
+
+# rustup
+[ -e "$HOME/.cargo/env" ] && [ -e "$ZSHDIR/rustup" ] && zsh-defer +1 +2 -c 'source $HOME/.cargo/env'
 
 # load base libs
 source "$ZSHDIR/lib.zsh"
@@ -216,6 +219,11 @@ if [[ "$DISABLE_SYNTAX_HIGHLIGHTING" != "true" ]]; then
 	source "$ZSHDIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 fi
 $DEBUG && echo "Syntax Highlighting loaded: "$(($(date +%s%N)/1000000-$timer_syntax))
+
+# ------------------ AUTOSUGGESTIONS ------------------
+$DEBUG && timer_autosug=$(($(date +%s%N)/1000000))
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+$DEBUG && echo "Auto Suggestions loaded: "$(($(date +%s%N)/1000000-$timer_autosug))
 
 # ----------------------  AFTER  ----------------------
 [ -e "$ZSHDIR/user-after.zsh" ] && source $ZSHDIR/user-after.zsh
