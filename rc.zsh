@@ -20,7 +20,7 @@ source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
 [ -e "$ZSHDIR/fnvm" ] && zsh-defer +1 +2 -c 'source $ZSHDIR/fnvm/fnvm.sh; fnvm_init'
 
 # pyenv
-[ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"'
+[ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"; eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"'
 
 # rustup
 [ -e "$HOME/.cargo/env" ] && [ -e "$ZSHDIR/rustup" ] && zsh-defer +1 +2 -c 'source $HOME/.cargo/env'
