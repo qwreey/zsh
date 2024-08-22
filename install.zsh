@@ -27,17 +27,17 @@ fi
 # clone files
 log "Clone qwreey/zsh"                        ; git clone https://github.com/qwreey75/zsh "$ZSHDIR" --depth 1
 log "Clone romkatv/zsh-defer"                 ; git clone https://github.com/romkatv/zsh-defer "$ZSHDIR/defer" --depth 1
-if [ "$ZSHFNVM" == "true" ]; then
+if [ "$ZSHFNVM" = "true" ]; then
 log "Clone qwreey/fnvm"                       ; git clone https://github.com/qwreey75/fnvm "$ZSHDIR/fnvm" --depth 1
 fi
-if [ "$ZSHNVM" == "true" ]; then
+if [ "$ZSHNVM" = "true" ]; then
 log "Clone nvm-sh/nvm"                        ; git clone https://github.com/nvm-sh/nvm "$ZSHDIR/nvm" --depth 1
 fi
 log "Clone ohmyzsh/ohmyzsh"                   ; git clone https://github.com/ohmyzsh/ohmyzsh "$ZSHDIR/omz" --depth 1
 log "Clone romkatv/powerlevel10k"             ; git clone https://github.com/romkatv/powerlevel10k "$ZSHDIR/powerlevel10k" --depth 1
 log "Clone zsh-users/zsh-syntax-highlighting" ; git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSHDIR/zsh-syntax-highlighting" --depth 1
 log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSHDIR/zsh-autosuggestions" --depth 1
-if [ "$ZSHPYENV" == "true" ]; then
+if [ "$ZSHPYENV" = "true" ]; then
     log "Install pyenv"
     curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
     eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
@@ -46,7 +46,7 @@ if [ "$ZSHPYENV" == "true" ]; then
     pyenv virtualenv 3.12 default
     pyenv activate default
 fi
-if [ "$ZSHRUSTUP" == "true" ]; then
+if [ "$ZSHRUSTUP" = "true" ]; then
     log "Install rustup"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | RUSTUP_HOME="$ZSHDIR/rustup" sh -s -- --no-modify-path --profile default --default-toolchain stable -c cargo -c rust-analyzer -c rust-src -c clippy -y
 fi
@@ -83,6 +83,6 @@ echo nodejs installed!
 # set install time and restart
 date -u "+%s" > "$ZSHDIR/updated-at"
 echo restarting . . .
-[ "$ZSHNOEXEC" == "true" ] || exec zsh
+[ "$ZSHNOEXEC" = "true" ] || exec zsh
 
 exit 0
