@@ -7,11 +7,22 @@ fi
 $DEBUG && timer_main=$(($(date +%s%N)/1000000)) && echo .zshrc load started
 
 # ----------------------  CONFIG  ----------------------
-export HISTFILE="$ZSHDIR/history"
 export FNVM_NVMDIR="$ZSHDIR/nvm"
 export FNVM_DIR="$ZSHDIR/fnvm"
 export NVM_DIR="$ZSHDIR/nvm"
 export PYENV_ROOT="$ZSHDIR/pyenv"
+
+# unlimited history
+if [ -e "$ZSHDIR/history" ]; then
+	echo The behavior of putting history files inside .zsh was unstable and has been removed. Move this to your home folder.
+	echo
+	echo (move $ZSHDIR/history into $HOME/.zsh_history)
+
+	export HISTFILE="$ZSHDIR/history"
+fi
+export HISTSIZE=1000000000
+export SAVEHIST=$HISTSIZE
+setopt EXTENDED_HISTORY
 
 # load defer
 source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
@@ -40,7 +51,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add common bin dirs
 (! (($path[(Ie)$HOME/.yarn/bin])) ) && path=( "$HOME/.yarn/bin" $path )
 (! (($path[(Ie)$HOME/.cargo/bin])) ) && path=( "$HOME/.cargo/bin" $path )
-(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $path )
+(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $path )pyenv activate default
 (! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
 (! (($path[(Ie)$ZSHDIR/bin])) ) && path=( "$ZSHDIR/bin" $path )
 export PATH

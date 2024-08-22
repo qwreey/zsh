@@ -53,13 +53,13 @@ fi
 # /home/qwreey/.cargo/bin
 
 # import backups
-[ -e "$HOME/.zsh_history" ] && cat "$HOME/.zsh_history" >> "$ZSHDIR/history" && mv ".zsh_history" ".zsh_history.bak" && echo "Backup ~/.zsh_history into ~/.zsh_history.bak, history imported to $ZSHDIR/history"
+# [ -e "$HOME/.zsh_history" ] && cat "$HOME/.zsh_history" >> "$ZSHDIR/history" && mv ".zsh_history" ".zsh_history.bak" && echo "Backup ~/.zsh_history into ~/.zsh_history.bak, history imported to $ZSHDIR/history"
 [ -e "$HOME/user-lazy.zsh.bak" ] && mv "$HOME/user-lazy.zsh.bak" "$ZSHDIR/user-lazy.zsh" 
 [ -e "$HOME/user-after.zsh.bak" ] && mv "$HOME/user-after.zsh.bak" "$ZSHDIR/user-after.zsh"
 [ -e "$HOME/user-before.zsh.bak" ] && mv "$HOME/user-before.zsh.bak" "$ZSHDIR/user-before.zsh"
 [ -e "$HOME/user-p10k.zsh.bak" ] && mv "$HOME/user-p10k.zsh.bak" "$ZSHDIR/user-p10k.zsh"
 [ -e "$HOME/omz-custom.bak" ] && mv "$HOME/omz-custom.bak" "$ZSHDIR/omz/custom"
-[ -e "$HOME/history.bak" ] && cat "$HOME/history" >> "$ZSHDIR/history" && rm "$HOME/history.bak"
+# [ -e "$HOME/history.bak" ] && cat "$HOME/history" >> "$ZSHDIR/history" && rm "$HOME/history.bak"
 
 # write zshrc
 [ -e "$HOME/.zshrc" ] && mv "$HOME/.zshrc" "$HOME/zshrc.bak" && echo "Backup ~/.zshrc into ~/.zshrc.bak"
