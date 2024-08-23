@@ -57,7 +57,7 @@ if [[ "$ZSHPYENV" == "true" ]]; then
         eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
         PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" install 3.12
         PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" virtualenv 3.12 default
-        PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" activate default
+        PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" global default
     fi
 fi
 if [[ "$ZSHRUSTUP" == "true" ]]; then
