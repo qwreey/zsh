@@ -11,6 +11,7 @@ export FNVM_NVMDIR="$ZSHDIR/nvm"
 export FNVM_DIR="$ZSHDIR/fnvm"
 export NVM_DIR="$ZSHDIR/nvm"
 export PYENV_ROOT="$ZSHDIR/pyenv"
+export CARGO_HOME="$HOME/.cargo"
 
 # unlimited history
 if [ -e "$ZSHDIR/history" ]; then
