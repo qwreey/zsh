@@ -10,6 +10,7 @@ fi
 (! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
 (! (($path[(Ie)$ZSHDIR/bin])) ) && path=( "$ZSHDIR/bin" $path )
 (! (($path[(Ie)$ZSHDIR/pyenv/shims])) ) && path=( "$ZSHDIR/pyenv/shims" $path )
+export PATH
 
 source $ZSHDIR/fnvm/fnvm.sh; FNVM_DISABLE_CD=yes fnvm_init
 
