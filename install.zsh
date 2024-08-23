@@ -27,10 +27,10 @@ fi
 # clone files
 log "Clone qwreey/zsh"                        ; git clone https://github.com/qwreey75/zsh "$ZSHDIR" --depth 1
 log "Clone romkatv/zsh-defer"                 ; git clone https://github.com/romkatv/zsh-defer "$ZSHDIR/defer" --depth 1
-if [ "$ZSHFNVM" = "true" ]; then
+if [[ "$ZSHFNVM" == "true" ]]; then
     log "Clone qwreey/fnvm"                   ; git clone https://github.com/qwreey75/fnvm "$ZSHDIR/fnvm" --depth 1
 fi
-if [ "$ZSHNVM" = "true" ]; then
+if [[ "$ZSHNVM" == "true" ]]; then
     log "Clone nvm-sh/nvm"                    ; git clone https://github.com/nvm-sh/nvm "$ZSHDIR/nvm" --depth 1
     export NVM_DIR="$ZSHDIR/nvm"
     source "$ZSHDIR/nvm/nvm.sh"
@@ -44,7 +44,7 @@ log "Clone ohmyzsh/ohmyzsh"                   ; git clone https://github.com/ohm
 log "Clone romkatv/powerlevel10k"             ; git clone https://github.com/romkatv/powerlevel10k "$ZSHDIR/powerlevel10k" --depth 1
 log "Clone zsh-users/zsh-syntax-highlighting" ; git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSHDIR/zsh-syntax-highlighting" --depth 1
 log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSHDIR/zsh-autosuggestions" --depth 1
-if [ "$ZSHPYENV" = "true" ]; then
+if [[ "$ZSHPYENV" == "true" ]]; then
     log "Install pyenv"
     if (( $+commands[cygpath] )); then
         git clone https://github.com/pyenv-win/pyenv-win.git "$ZSHDIR\pyenv"
@@ -58,7 +58,7 @@ if [ "$ZSHPYENV" = "true" ]; then
         PYENV_ROOT="$ZSHDIR/pyenv" pyenv activate default
     fi
 fi
-if [ "$ZSHRUSTUP" = "true" ]; then
+if [[ "$ZSHRUSTUP" == "true" ]]; then
     log "Install rustup"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | CARGO_HOME="$HOME/.cargo" RUSTUP_HOME="$ZSHDIR/rustup" sh -s -- --no-modify-path --profile default --default-toolchain stable -c cargo -c rust-analyzer -c rust-src -c clippy -y
     rustup default stable
@@ -86,7 +86,7 @@ zcompile_all; echo Recompiled all of zsh
 # set install time and restart
 date -u "+%s" > "$ZSHDIR/updated-at"
 echo restarting . . .
-if [ "$ZSHNOEXEC" = "true" ]; then
+if [[ "$ZSHNOEXEC" == "true" ]]; then
 	exit 0
 fi
 exec zsh
