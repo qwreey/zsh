@@ -87,8 +87,5 @@ zcompile_all; echo Recompiled all of zsh
 
 # set install time and restart
 date -u "+%s" > "$ZSHDIR/updated-at"
-echo restarting . . .
-if [[ "$ZSHNOEXEC" == "true" ]]; then
-	exit 0
-fi
-exec zsh
+echo Ok. restart your shell to go!
+
