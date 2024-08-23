@@ -12,3 +12,5 @@ fi
 (! (($path[(Ie)$ZSHDIR/pyenv/shims])) ) && path=( "$ZSHDIR/pyenv/shims" $path )
 
 source $ZSHDIR/fnvm/fnvm.sh; FNVM_DISABLE_CD=yes fnvm_init
+
+"$@"
