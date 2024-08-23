@@ -32,11 +32,7 @@ source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
 
 # pyenv
 if (( $+commands[cygpath] )); then
-export PATH="$ZSHDIR/pyenv/libexec:$ZSHDIR/pyenv/shims:${PATH}"
-export PYENV_SHELL=zsh
-source "$ZSHDIR/pyenv/libexec/../completions/pyenv.zsh"
-# command pyenv rehash 2>/dev/null
-# [ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/libexec/pyenv init -)"; eval "$($ZSHDIR/pyenv/libexec/pyenv virtualenv-init -)"'
+export PATH="$ZSHDIR\pyenv-win\bin:$ZSHDIR\pyenv\pyenv-win\shims:$PATH"
 else
 [ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"; eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"'
 fi
