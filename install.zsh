@@ -55,9 +55,9 @@ if [[ "$ZSHPYENV" == "true" ]]; then
         curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
         eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
         eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
-        PYENV_ROOT="$ZSHDIR/pyenv" pyenv install 3.12
-        PYENV_ROOT="$ZSHDIR/pyenv" pyenv virtualenv 3.12 default
-        PYENV_ROOT="$ZSHDIR/pyenv" pyenv activate default
+        PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" install 3.12
+        PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" virtualenv 3.12 default
+        PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" activate default
     fi
 fi
 if [[ "$ZSHRUSTUP" == "true" ]]; then
