@@ -28,10 +28,17 @@ fi
 log "Clone qwreey/zsh"                        ; git clone https://github.com/qwreey75/zsh "$ZSHDIR" --depth 1
 log "Clone romkatv/zsh-defer"                 ; git clone https://github.com/romkatv/zsh-defer "$ZSHDIR/defer" --depth 1
 if [ "$ZSHFNVM" = "true" ]; then
-log "Clone qwreey/fnvm"                       ; git clone https://github.com/qwreey75/fnvm "$ZSHDIR/fnvm" --depth 1
+    log "Clone qwreey/fnvm"                   ; git clone https://github.com/qwreey75/fnvm "$ZSHDIR/fnvm" --depth 1
 fi
 if [ "$ZSHNVM" = "true" ]; then
-log "Clone nvm-sh/nvm"                        ; git clone https://github.com/nvm-sh/nvm "$ZSHDIR/nvm" --depth 1
+    log "Clone nvm-sh/nvm"                    ; git clone https://github.com/nvm-sh/nvm "$ZSHDIR/nvm" --depth 1
+    export NVM_DIR="$ZSHDIR/nvm"
+    source "$ZSHDIR/nvm/nvm.sh"
+    echo Setup nodejs . . .
+    nvm install node
+    nvm version current > "$HOME/.nvmrc.default"
+    corepack enable
+    echo nodejs installed!
 fi
 log "Clone ohmyzsh/ohmyzsh"                   ; git clone https://github.com/ohmyzsh/ohmyzsh "$ZSHDIR/omz" --depth 1
 log "Clone romkatv/powerlevel10k"             ; git clone https://github.com/romkatv/powerlevel10k "$ZSHDIR/powerlevel10k" --depth 1
@@ -39,8 +46,6 @@ log "Clone zsh-users/zsh-syntax-highlighting" ; git clone https://github.com/zsh
 log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSHDIR/zsh-autosuggestions" --depth 1
 if [ "$ZSHPYENV" = "true" ]; then
     log "Install pyenv"
-    
-
     if (( $+commands[cygpath] )); then
         git clone https://github.com/pyenv-win/pyenv-win.git "$ZSHDIR\pyenv"
         PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv install 3.12
@@ -52,7 +57,6 @@ if [ "$ZSHPYENV" = "true" ]; then
         PYENV_ROOT="$ZSHDIR/pyenv" pyenv virtualenv 3.12 default
         PYENV_ROOT="$ZSHDIR/pyenv" pyenv activate default
     fi
-    
 fi
 if [ "$ZSHRUSTUP" = "true" ]; then
     log "Install rustup"
@@ -78,15 +82,6 @@ cat "$ZSHDIR/.zshrc" >> "$HOME/.zshrc"
 source "$ZSHDIR/rc.zsh"
 source "$ZSHDIR/lazyload.zsh"
 zcompile_all; echo Recompiled all of zsh
-
-# load nvm
-export NVM_DIR="$ZSHDIR/nvm"
-source "$ZSHDIR/nvm/nvm.sh"
-echo Setup nodejs . . .
-nvm install node
-nvm version current > "$HOME/.nvmrc.default"
-corepack enable
-echo nodejs installed!
 
 # set install time and restart
 date -u "+%s" > "$ZSHDIR/updated-at"
