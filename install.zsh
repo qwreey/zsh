@@ -48,9 +48,9 @@ if [[ "$ZSHPYENV" == "true" ]]; then
     log "Install pyenv"
     if (( $+commands[cygpath] )); then
         git clone https://github.com/pyenv-win/pyenv-win.git "$ZSHDIR\pyenv"
-        PYVER="$(PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv latest --known 3)"
-        PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv install "$PYVER"
-        PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv global "$PYVER"
+        PYVER="$(PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv latest --known 3)"
+        PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv install "$PYVER"
+        PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv global "$PYVER"
     else
         curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
         eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
