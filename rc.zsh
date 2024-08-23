@@ -32,9 +32,9 @@ source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
 
 # pyenv
 if (( $+commands[cygpath] )); then
-export PATH="$ZSHDIR\pyenv-win\bin:$ZSHDIR\pyenv\pyenv-win\shims:$PATH"
+	export PATH="$ZSHDIR\pyenv-win\bin:$ZSHDIR\pyenv\pyenv-win\shims:$PATH"
 else
-[ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"; eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"'
+	[ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"; eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"'
 fi
 
 # rustup
