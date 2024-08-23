@@ -31,7 +31,11 @@ source "$ZSHDIR/defer/zsh-defer.plugin.zsh"
 [ -e "$ZSHDIR/fnvm" ] && zsh-defer +1 +2 -c 'source $ZSHDIR/fnvm/fnvm.sh; fnvm_init'
 
 # pyenv
+if (( $+commands[cygpath] )); then
+[ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/libexec/pyenv init -)"; eval "$($ZSHDIR/pyenv/libexec/pyenv virtualenv-init -)"'
+else
 [ -e "$ZSHDIR/pyenv" ] && zsh-defer +1 +2 -c 'eval "$($ZSHDIR/pyenv/bin/pyenv init -)"; eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"'
+fi
 
 # rustup
 # Not required.
