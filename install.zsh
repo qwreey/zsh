@@ -90,6 +90,7 @@ echo nodejs installed!
 # set install time and restart
 date -u "+%s" > "$ZSHDIR/updated-at"
 echo restarting . . .
-[ "$ZSHNOEXEC" = "true" ] || exec zsh
-
-exit 0
+if [ "$ZSHNOEXEC" = "true" ]; then
+	exit 0
+fi
+exec zsh
