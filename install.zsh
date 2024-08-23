@@ -40,8 +40,16 @@ log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh
 if [ "$ZSHPYENV" = "true" ]; then
     log "Install pyenv"
     curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
-    eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
-    eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
+
+    if (( $+commands[cygpath] )); then
+        export PATH="$ZSHDIR/pyenv/libexec:$ZSHDIR/pyenv/shims:${PATH}"
+        export PYENV_SHELL=zsh
+        eval "$($ZSHDIR/pyenv/libexec/pyenv init -)"
+        eval "$($ZSHDIR/pyenv/libexec/pyenv virtualenv-init -)"
+    else
+        eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
+        eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
+    fi
     PYENV_ROOT="$ZSHDIR/pyenv" pyenv install 3.12
     PYENV_ROOT="$ZSHDIR/pyenv" pyenv virtualenv 3.12 default
     PYENV_ROOT="$ZSHDIR/pyenv" pyenv activate default
@@ -49,8 +57,8 @@ fi
 if [ "$ZSHRUSTUP" = "true" ]; then
     log "Install rustup"
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | CARGO_HOME="$HOME/.cargo" RUSTUP_HOME="$ZSHDIR/rustup" sh -s -- --no-modify-path --profile default --default-toolchain stable -c cargo -c rust-analyzer -c rust-src -c clippy -y
+    rustup default stable
 fi
-# /home/qwreey/.cargo/bin
 
 # import backups
 # [ -e "$HOME/.zsh_history" ] && cat "$HOME/.zsh_history" >> "$ZSHDIR/history" && mv ".zsh_history" ".zsh_history.bak" && echo "Backup ~/.zsh_history into ~/.zsh_history.bak, history imported to $ZSHDIR/history"
