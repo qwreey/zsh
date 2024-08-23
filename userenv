@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ -z "$ZSHDIR" ]; then
+    ZSHDIR="$(dirname "$(readlink -f "$0")")"
+fi
+
+(! (($path[(Ie)$HOME/.yarn/bin])) ) && path=( "$HOME/.yarn/bin" $path )
+(! (($path[(Ie)$HOME/.cargo/bin])) ) && path=( "$HOME/.cargo/bin" $path )
+(! (($path[(Ie)$HOME/.local/bin])) ) && path=( "$HOME/.local/bin" $path )
+(! (($path[(Ie)$ZSHDIR/pyenv/bin])) ) && path=( "$ZSHDIR/pyenv/bin" $path )
+(! (($path[(Ie)$ZSHDIR/bin])) ) && path=( "$ZSHDIR/bin" $path )
+(! (($path[(Ie)$ZSHDIR/pyenv/shims])) ) && path=( "$ZSHDIR/pyenv/shims" $path )
+
+source $ZSHDIR/fnvm/fnvm.sh; FNVM_DISABLE_CD=yes fnvm_init
