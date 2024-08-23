@@ -39,19 +39,21 @@ log "Clone zsh-users/zsh-syntax-highlighting" ; git clone https://github.com/zsh
 log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSHDIR/zsh-autosuggestions" --depth 1
 if [ "$ZSHPYENV" = "true" ]; then
     log "Install pyenv"
-    curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
+    
 
     if (( $+commands[cygpath] )); then
-        export PATH="$ZSHDIR/pyenv/libexec:$ZSHDIR/pyenv/shims:${PATH}"
-        export PYENV_SHELL=zsh
-        eval "$($ZSHDIR/pyenv/libexec/pyenv virtualenv-init -)"
+        git clone https://github.com/pyenv-win/pyenv-win.git "$ZSHDIR\pyenv"
+        export PATH="$ZSHDIR\pyenv-win\bin:$ZSHDIR\pyenv\pyenv-win\shims:$PATH"
+        pyenv install 3.12
     else
+        curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
         eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
         eval "$($ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
+        PYENV_ROOT="$ZSHDIR/pyenv" pyenv install 3.12
+        PYENV_ROOT="$ZSHDIR/pyenv" pyenv virtualenv 3.12 default
+        PYENV_ROOT="$ZSHDIR/pyenv" pyenv activate default
     fi
-    PYENV_ROOT="$ZSHDIR/pyenv" pyenv install 3.12
-    PYENV_ROOT="$ZSHDIR/pyenv" pyenv virtualenv 3.12 default
-    PYENV_ROOT="$ZSHDIR/pyenv" pyenv activate default
+    
 fi
 if [ "$ZSHRUSTUP" = "true" ]; then
     log "Install rustup"
