@@ -43,8 +43,7 @@ if [ "$ZSHPYENV" = "true" ]; then
 
     if (( $+commands[cygpath] )); then
         git clone https://github.com/pyenv-win/pyenv-win.git "$ZSHDIR\pyenv"
-        export PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH"
-        pyenv install 3.12
+        PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" /pyenv-win/bin/pyenv install 3.12
     else
         curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
         eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
