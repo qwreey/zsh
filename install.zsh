@@ -44,7 +44,6 @@ if [ "$ZSHPYENV" = "true" ]; then
     if (( $+commands[cygpath] )); then
         export PATH="$ZSHDIR/pyenv/libexec:$ZSHDIR/pyenv/shims:${PATH}"
         export PYENV_SHELL=zsh
-        eval "$($ZSHDIR/pyenv/libexec/pyenv init -)"
         eval "$($ZSHDIR/pyenv/libexec/pyenv virtualenv-init -)"
     else
         eval "$($ZSHDIR/pyenv/bin/pyenv init -)"
