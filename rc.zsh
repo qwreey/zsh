@@ -13,6 +13,7 @@ export NVM_DIR="$ZSHDIR/nvm"
 export PYENV_ROOT="$ZSHDIR/pyenv"
 export CARGO_HOME="$HOME/.cargo"
 export RUSTUP_HOME="$ZSHDIR/rustup"
+export COREPACK_ENABLE_AUTO_PIN=0
 
 # unlimited history
 if [ -e "$ZSHDIR/history" ]; then
