@@ -1,39 +1,3 @@
-# recompile all zsh files
-zcompile_all() {
-	[ -e "$HOME/.zsh/private.zsh" ] && zcompile ~/.zsh/private.zsh
-	[ -e "$HOME/.zsh/user-lazy.zsh" ] && zcompile ~/.zsh/user-lazy.zsh
-	[ -e "$HOME/.zsh/user-before.zsh" ] && zcompile ~/.zsh/user-before.zsh
-	[ -e "$HOME/.zsh/user-after.zsh" ] && zcompile ~/.zsh/user-after.zsh
-	[ -e "$HOME/.zsh/user-p10k.zsh" ] && zcompile ~/.zsh/user-p10k.zsh
-	zcompile "$HOME/.zsh/rc.zsh"
-	zcompile "$HOME/.zsh/lazyload.zsh"
-	zcompile "$HOME/.zsh/p10k.zsh"
-	zcompile "$HOME/.zsh/nvm/nvm.sh"
-	zcompile "$HOME/.zsh/fnvm/fnvm.sh"
-	zcompile "$HOME/.zsh/defer/zsh-defer.plugin.zsh"
-	zcompile "$HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-	zcompile "$HOME/.zsh/lib.zsh"
-	( rm "$HOME"/.zsh/omz/lib/**/*.zsh.zwc -f ) 2>/dev/null
-	find "$HOME"/.zsh/powerlevel10k/**/*.zsh-theme | xargs -i zsh -c 'zcompile {}'
-	find "$HOME"/.zsh/powerlevel10k/internal/**/*.zsh | xargs -i zsh -c 'zcompile {}'
-	find "$HOME"/.zsh/powerlevel10k/gitstatus/**/*.zsh | xargs -i zsh -c 'zcompile {}'
-	( find "$HOME"/.zsh/omz/lib/**/*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
-	( find "$HOME"/.zsh/zcompdump*.zsh | xargs -i zsh -c 'zcompile {}' ) 2>/dev/null
-	find "$HOME"/.zsh/zsh-syntax-highlighting/**/*.zsh | xargs -i zsh -c 'zcompile {}'
-}
-zupdate() {
-	git -C $HOME/.zsh/fnvm pull origin master --depth 1
-	git -C $HOME/.zsh/defer pull origin master --depth 1
-	git -C $HOME/.zsh/nvm pull origin master --depth 1
-	git -C $HOME/.zsh/powerlevel10k pull origin master --depth 1
-	git -C $HOME/.zsh/zsh-syntax-highlighting pull origin master --depth 1
-	fnvm_update
-	omz update
-	zcompile_all
-	date -u "+%s" > "$HOME/.zsh/updated-at"
-	exec zsh
-}
-
 # update notification
 if [[ -z "$NO_UPDATE_NOFITICATION" ]]; then
 	now=$(date -u "+%s")

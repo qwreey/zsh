@@ -2,10 +2,7 @@ updated-at
 private.zsh
 *.zwc
 history
-user-before.zsh
-user-after.zsh
-user-lazy.zsh
-user-p10k.zsh
+user-*
 zcompdump-*
 nvm/
 omz/

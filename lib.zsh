@@ -1,6 +1,24 @@
 
 declare -A PATH_ALLOCATIONS
 
+function zsh:compile {
+	cp $ZSHDIR/nvm/nvm.sh $ZSHDIR/nvm/v-nvm.zsh
+	zcompile $ZSHDIR/omz/**/*.zsh $ZSHDIR/*.zsh $ZSHDIR/powerlevel10k/**/*.zsh $ZSHDIR/powerlevel10k/**/*.zsh-theme $ZSHDIR/zsh-autosuggestions/**/*.zsh $ZSHDIR/zsh-syntax-highlighting/highlighters/*/*.zsh $ZSHDIR/zsh-syntax-highlighting/*.zsh $ZSHDIR/fnvm/**/*.sh $ZSHDIR/defer/**/*.zsh $ZSHDIR/nvm/v-nvm.zsh
+}
+
+function zsh:update {
+	git -C $ZSHDIR pull --depth 1 --ff-only
+	git -C $ZSHDIR/nvm pull --depth 1 --ff-only
+	git -C $ZSHDIR/zsh-syntax-highlighting pull --depth 1 --ff-only
+	git -C $ZSHDIR/powerlevel10k pull --depth 1 --ff-only
+	git -C $ZSHDIR/zsh-autosuggestions pull --depth 1 --ff-only
+	git -C $ZSHDIR/defer pull --depth 1 --ff-only
+	[ ! -z "$ZSHDIR" ] && rm -f $ZSHDIR/omz/**/*.zsh.zwc
+	omz update
+	fnvm_update
+	zsh:compile
+}
+
 function lib:path-free {
 	local alloc
 	eval "alloc=\$$1"
