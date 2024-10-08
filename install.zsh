@@ -15,6 +15,7 @@ log "Install started to $ZSHDIR"
 # check old files
 if [[ -e "$ZSHDIR" ]]; then
     log "Old installation found. backup files"
+    [ -e "$ZSHDIR/bin" ] && mv "$ZSHDIR/bin" "$HOME/bin.bak" && HEAD="Backup" log "Backup bin"
     [ -e "$ZSHDIR/user-lazy.zsh" ] && mv "$ZSHDIR/user-lazy.zsh" "$HOME/user-lazy.zsh.bak" && HEAD="Backup" log "Backup user-lazy"
     [ -e "$ZSHDIR/user-after.zsh" ] && mv "$ZSHDIR/user-after.zsh" "$HOME/user-after.zsh.bak" && HEAD="Backup" log "Backup user-after"
     [ -e "$ZSHDIR/user-before.zsh" ] && mv "$ZSHDIR/user-before.zsh" "$HOME/user-before.zsh.bak" && HEAD="Backup" log "Backup user-before"
@@ -68,6 +69,7 @@ fi
 
 # import backups
 # [ -e "$HOME/.zsh_history" ] && cat "$HOME/.zsh_history" >> "$ZSHDIR/history" && mv ".zsh_history" ".zsh_history.bak" && echo "Backup ~/.zsh_history into ~/.zsh_history.bak, history imported to $ZSHDIR/history"
+[ -e "$HOME/bin.bak" ] && mv "$HOME/bin.bak" "$ZSHDIR/bin"
 [ -e "$HOME/user-lazy.zsh.bak" ] && mv "$HOME/user-lazy.zsh.bak" "$ZSHDIR/user-lazy.zsh" 
 [ -e "$HOME/user-after.zsh.bak" ] && mv "$HOME/user-after.zsh.bak" "$ZSHDIR/user-after.zsh"
 [ -e "$HOME/user-before.zsh.bak" ] && mv "$HOME/user-before.zsh.bak" "$ZSHDIR/user-before.zsh"
