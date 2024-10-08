@@ -40,7 +40,7 @@ if [[ "$ZSHNVM" == "true" ]]; then
 	export NVM_DIR="$ZSHDIR/nvm"
 	source "$ZSHDIR/nvm/nvm.sh"
 	echo "Setup nodejs . . ."
-	nvm install node
+	nvm install --no-progress node
 	nvm version current > "$HOME/.nvmrc.default"
 	corepack enable
 	echo "nodejs installed!"
