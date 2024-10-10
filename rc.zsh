@@ -221,14 +221,18 @@ $DEBUG && echo "OMZ loaded: "$(($(date +%s%N)/1000000-$timer_omz))"\n - Plugins:
 
 # ----------------------  THEME  ----------------------
 $DEBUG && timer_theme=$(($(date +%s%N)/1000000))
-if [[ -e "$ZSHDIR/user-p10k.zsh" ]]; then
-	source "$ZSHDIR/user-p10k.zsh"
+if [[ -e "$ZSHDIR/user-theme.zsh" ]]; then
+	source "$ZSHDIR/user-theme.zsh"
 else
-	source "$ZSHDIR/p10k.zsh"
-	source "$ZSHDIR/p10k-override.zsh"
+	if [[ -e "$ZSHDIR/user-p10k.zsh" ]]; then
+		source "$ZSHDIR/user-p10k.zsh"
+	else
+		source "$ZSHDIR/p10k.zsh"
+		source "$ZSHDIR/p10k-override.zsh"
+	fi
+	[ -e "$ZSHDIR/user-p10k-override.zsh" ] && source "$ZSHDIR/user-p10k-override.zsh"
+	source "$ZSHDIR/powerlevel10k/powerlevel10k.zsh-theme"
 fi
-[ -e "$ZSHDIR/user-p10k-override.zsh" ] && source "$ZSHDIR/user-p10k-override.zsh"
-source "$ZSHDIR/powerlevel10k/powerlevel10k.zsh-theme"
 $DEBUG && echo "Theme (p10k) loaded: "$(($(date +%s%N)/1000000-$timer_theme))
 
 # ---------------------- SYNTAX  ----------------------
