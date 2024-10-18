@@ -7,7 +7,7 @@ function zsh:compile {
 }
 
 function zsh:update {
-	git -C $ZSHDIR pull --depth 1 --ff-only
+	git -C $ZSHDIR pull --depth 1 --rebase
 	git -C $ZSHDIR/nvm pull --depth 1 --ff-only
 	git -C $ZSHDIR/zsh-syntax-highlighting pull --depth 1 --ff-only
 	git -C $ZSHDIR/powerlevel10k pull --depth 1 --ff-only
