@@ -20,5 +20,16 @@ export CARGO_HOME="$HOME/.cargo"
 export RUSTUP_HOME="$ZSHDIR/rustup"
 
 source $ZSHDIR/fnvm/fnvm.sh; FNVM_DISABLE_CD=yes fnvm_init
+source $ZSHDIR/lib.zsh
 
-exec "$@"
+if [ ! -z "$CWD" ]; then
+	cd "$CWD"
+fi
+
+if [[ "$NOEXEC" == "1" ]]; then
+	"$@"
+	exit "$?"
+else
+	exec "$@"
+fi
+
