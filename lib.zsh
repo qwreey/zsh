@@ -8,13 +8,17 @@ function zsh:compile {
 
 function zsh:update {
 	git -C $ZSHDIR pull --depth 1 --rebase
-	git -C $ZSHDIR/nvm pull --depth 1 --ff-only
-	git -C $ZSHDIR/zsh-syntax-highlighting pull --depth 1 --ff-only
-	git -C $ZSHDIR/powerlevel10k pull --depth 1 --ff-only
-	git -C $ZSHDIR/zsh-autosuggestions pull --depth 1 --ff-only
-	git -C $ZSHDIR/defer pull --depth 1 --ff-only
+	git -C $ZSHDIR/nvm pull --depth 1 --rebase
+	git -C $ZSHDIR/zsh-syntax-highlighting pull --depth 1 --rebase
+	git -C $ZSHDIR/powerlevel10k pull --depth 1 --rebase
+	git -C $ZSHDIR/zsh-autosuggestions pull --depth 1 --rebase
+	git -C $ZSHDIR/defer pull --depth 1 --rebase
 	[ ! -z "$ZSHDIR" ] && rm -f $ZSHDIR/omz/**/*.zsh.zwc
-	omz update
+	if command -v omz > /dev/null; then
+		omz update
+	else
+		git -C $ZSHDIR/omz pull --depth 1 --rebase
+	fi
 	fnvm_update
 	zsh:compile
 }
