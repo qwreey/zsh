@@ -14,7 +14,9 @@ pyenv/
 rustup/
 powerlevel10k/
 zsh-syntax-highlighting/
-zsh-autosuggestions
+zsh-autosuggestions/
+fzf-tab-completion/
+*-zsh-theme/
 bin/**
 codename
 codename.colored

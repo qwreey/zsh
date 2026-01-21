@@ -221,8 +221,11 @@ $DEBUG && echo "OMZ loaded: "$(($(date +%s%N)/1000000-$timer_omz))"\n - Plugins:
 
 # ----------------------  THEME  ----------------------
 $DEBUG && timer_theme=$(($(date +%s%N)/1000000))
+THEME_FILE=$(echo $ZSHDIR/*-zsh-theme/*.zsh-theme)
 if [[ -e "$ZSHDIR/user-theme.zsh" ]]; then
 	source "$ZSHDIR/user-theme.zsh"
+elif [[ -e "$THEME_FILE" ]]; then
+	source "$THEME_FILE"
 else
 	if [[ -e "$ZSHDIR/user-p10k.zsh" ]]; then
 		source "$ZSHDIR/user-p10k.zsh"
