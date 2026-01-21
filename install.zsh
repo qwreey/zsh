@@ -72,7 +72,6 @@ fi
 if [[ "$ZSHRUSTUP" == "true" ]]; then
 	log "Install rustup"
 	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | CARGO_HOME="$HOME/.cargo" RUSTUP_HOME="$ZSHDIR/rustup" sh -s -- --no-modify-path --profile default --default-toolchain stable -c cargo -c rust-analyzer -c rust-src -c clippy -y
-	rustup default stable
 fi
 
 # import backups
