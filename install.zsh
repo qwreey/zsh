@@ -49,6 +49,7 @@ log "Clone ohmyzsh/ohmyzsh"                   ; git clone https://github.com/ohm
 log "Clone romkatv/powerlevel10k"             ; git clone https://github.com/romkatv/powerlevel10k "$ZSHDIR/powerlevel10k" --depth 1
 log "Clone zsh-users/zsh-syntax-highlighting" ; git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSHDIR/zsh-syntax-highlighting" --depth 1
 log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSHDIR/zsh-autosuggestions" --depth 1
+log "Clone zsh-users/zsh-autosuggestions"     ; git clone https://github.com/lincheney/fzf-tab-completion "$ZSHDIR/fzf-tab-completion" --depth 1
 if [[ "$ZSHPYENV" == "true" ]]; then
 	log "Install pyenv"
 	if (( $+commands[cygpath] )); then

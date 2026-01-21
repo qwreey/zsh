@@ -244,8 +244,14 @@ $DEBUG && echo "Syntax Highlighting loaded: "$(($(date +%s%N)/1000000-$timer_syn
 
 # ------------------ AUTOSUGGESTIONS ------------------
 $DEBUG && timer_autosug=$(($(date +%s%N)/1000000))
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source "$ZSHDIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
 $DEBUG && echo "Auto Suggestions loaded: "$(($(date +%s%N)/1000000-$timer_autosug))
+
+# ------------------ FZF COMPLETION  ------------------
+if which fzf &> /dev/null; then
+	source "$ZSHDIR/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
+	bindkey '^[[Z' fzf_completion
+fi
 
 # ----------------------  AFTER  ----------------------
 [ -e "$ZSHDIR/user-after.zsh" ] && source $ZSHDIR/user-after.zsh
