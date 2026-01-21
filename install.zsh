@@ -62,11 +62,11 @@ if [[ "$ZSHPYENV" == "true" ]]; then
 		PATH="$ZSHDIR/pyenv/pyenv-win/bin:$ZSHDIR/pyenv/pyenv-win/shims:$PATH" $ZSHDIR/pyenv/pyenv-win/bin/pyenv global "$PYVER"
 	else
 		curl --proto '=https' --tlsv1.2 -sSf https://pyenv.run | PYENV_ROOT="$ZSHDIR/pyenv" bash
-		eval "$(PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv init -)"
-		eval "$(PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
-		PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" install 3.12
-		PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" virtualenv 3.12 default
-		PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" global default
+		# eval "$(PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv init -)"
+		# eval "$(PYENV_ROOT="$ZSHDIR/pyenv" $ZSHDIR/pyenv/bin/pyenv virtualenv-init -)"
+		# PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" install 3.12
+		# PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" virtualenv 3.12 default
+		# PYENV_ROOT="$ZSHDIR/pyenv" PATH="$ZSHDIR/pyenv/bin:$PATH" PYENV_ROOT="$ZSHDIR/pyenv" "$ZSHDIR/pyenv/bin/pyenv" global default
 	fi
 fi
 if [[ "$ZSHRUSTUP" == "true" ]]; then
