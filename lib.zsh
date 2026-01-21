@@ -3,7 +3,7 @@ declare -A PATH_ALLOCATIONS
 
 function zsh:compile {
 	cp $ZSHDIR/nvm/nvm.sh $ZSHDIR/nvm/v-nvm.zsh
-	zcompile $ZSHDIR/omz/**/*.zsh $ZSHDIR/*.zsh $ZSHDIR/zsh-autosuggestions/**/*.zsh $ZSHDIR/zsh-syntax-highlighting/highlighters/*/*.zsh $ZSHDIR/zsh-syntax-highlighting/*.zsh $ZSHDIR/fnvm/**/*.sh $ZSHDIR/defer/**/*.zsh $ZSHDIR/nvm/v-nvm.zsh $ZSHDIR/*-zsh-theme/*.zsh-theme $ZSHDIR/fzf-tab-completion/*.zsh
+	zcompile $ZSHDIR/omz/**/*.zsh $ZSHDIR/*.zsh $ZSHDIR/zsh-autosuggestions/**/*.zsh $ZSHDIR/zsh-syntax-highlighting/highlighters/*/*.zsh $ZSHDIR/zsh-syntax-highlighting/*.zsh $ZSHDIR/fnvm/**/*.sh $ZSHDIR/defer/**/*.zsh $ZSHDIR/nvm/v-nvm.zsh $ZSHDIR/*-zsh-theme/*.zsh-theme $ZSHDIR/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 	[ -e "$ZSHDIR/powerlevel10k" ] && zcompile $ZSHDIR/powerlevel10k/**/*.zsh-theme $ZSHDIR/powerlevel10k/**/*.zsh
 }
 
