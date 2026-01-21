@@ -253,7 +253,7 @@ $DEBUG && echo "Auto Suggestions loaded: "$(($(date +%s%N)/1000000-$timer_autosu
 # ------------------ FZF COMPLETION  ------------------
 if which fzf &> /dev/null; then
 	source "$ZSHDIR/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
-	bindkey '^[[Z' fzf_completion
+	bindkey '^ ' fzf_completion
 fi
 
 # ----------------------  AFTER  ----------------------
