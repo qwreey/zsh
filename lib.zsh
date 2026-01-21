@@ -3,13 +3,15 @@ declare -A PATH_ALLOCATIONS
 
 function zsh:compile {
 	cp $ZSHDIR/nvm/nvm.sh $ZSHDIR/nvm/v-nvm.zsh
-	zcompile $ZSHDIR/omz/**/*.zsh $ZSHDIR/*.zsh $ZSHDIR/zsh-autosuggestions/**/*.zsh $ZSHDIR/zsh-syntax-highlighting/highlighters/*/*.zsh $ZSHDIR/zsh-syntax-highlighting/*.zsh $ZSHDIR/fnvm/**/*.sh $ZSHDIR/defer/**/*.zsh $ZSHDIR/nvm/v-nvm.zsh $ZSHDIR/*-zsh-theme/*.zsh-theme $ZSHDIR/fzf-tab-completion/zsh/fzf-zsh-completion.sh
+	[ -e $ZSHDIR/fnvm ] && zcompile $ZSHDIR/fnvm/**/*.sh
+	[ -e $ZSHDIR/nvm ] && $ZSHDIR/nvm/v-nvm.zsh
+	zcompile $ZSHDIR/omz/**/*.zsh $ZSHDIR/*.zsh $ZSHDIR/zsh-autosuggestions/**/*.zsh $ZSHDIR/zsh-syntax-highlighting/highlighters/*/*.zsh $ZSHDIR/zsh-syntax-highlighting/*.zsh $ZSHDIR/defer/**/*.zsh $ZSHDIR/*-zsh-theme/*.zsh-theme $ZSHDIR/fzf-tab-completion/zsh/fzf-zsh-completion.sh
 	[ -e "$ZSHDIR/powerlevel10k" ] && zcompile $ZSHDIR/powerlevel10k/**/*.zsh-theme $ZSHDIR/powerlevel10k/**/*.zsh
 }
 
 function zsh:update {
 	git -C $ZSHDIR pull --depth 1 --rebase
-	git -C $ZSHDIR/nvm pull --depth 1 --rebase
+	[ -e $ZSHDIR/nvm ] && git -C $ZSHDIR/nvm pull --depth 1 --rebase
 	git -C $ZSHDIR/zsh-syntax-highlighting pull --depth 1 --rebase
 	[ -e $ZSHDIR/powerlevel10k ] && git -C $ZSHDIR/powerlevel10k pull --depth 1 --rebase
 	git -C $ZSHDIR/zsh-autosuggestions pull --depth 1 --rebase
@@ -22,7 +24,7 @@ function zsh:update {
 	else
 		git -C $ZSHDIR/omz pull --depth 1 --rebase
 	fi
-	fnvm_update
+	[ -e $ZSHDIR/fnvm ] && fnvm_update
 	zsh:compile
 }
 
