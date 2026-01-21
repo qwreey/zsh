@@ -2,7 +2,7 @@
 declare -A PATH_ALLOCATIONS
 
 function zsh:compile {
-	cp $ZSHDIR/nvm/nvm.sh $ZSHDIR/nvm/v-nvm.zsh
+	[ -e $ZSHDIR/nvm ] && cp $ZSHDIR/nvm/nvm.sh $ZSHDIR/nvm/v-nvm.zsh
 	[ -e $ZSHDIR/fnvm ] && zcompile $ZSHDIR/fnvm/**/*.sh
 	[ -e $ZSHDIR/nvm ] && $ZSHDIR/nvm/v-nvm.zsh
 	zcompile $ZSHDIR/omz/**/*.zsh $ZSHDIR/*.zsh $ZSHDIR/zsh-autosuggestions/**/*.zsh $ZSHDIR/zsh-syntax-highlighting/highlighters/*/*.zsh $ZSHDIR/zsh-syntax-highlighting/*.zsh $ZSHDIR/defer/**/*.zsh $ZSHDIR/*-zsh-theme/*.zsh-theme $ZSHDIR/fzf-tab-completion/zsh/fzf-zsh-completion.sh
